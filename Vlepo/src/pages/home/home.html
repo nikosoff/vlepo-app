@@ -1,0 +1,76 @@
+<ion-content padding overflow-scroll="false">
+  <div padding>
+    <ion-segment [(ngModel)]="state">
+      <ion-segment-button value="seen">
+        ΕΙΔΑ
+      </ion-segment-button>
+      <ion-segment-button value="notSeenYet">
+        ΘΑ ΔΩ
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="state">
+
+    <div *ngSwitchCase="'seen'">
+
+      <div *ngFor="let videoProduction of videoProductions">
+        <div *ngIf="videoProduction.state=='seen'">
+          <ion-card>
+            <ion-toolbar>
+              <ion-title>{{ videoProduction.type }}</ion-title>
+              <ion-buttons end>
+                <button ion-button icon-only (click)="goToEditVideoProductionPage(videoProduction)">
+                  <ion-icon name="create" color="secondary"></ion-icon>
+                </button>
+                <button ion-button icon-only (click)="deleteVideoProduction(videoProduction)">
+                  <ion-icon name="trash" color="danger"></ion-icon>
+                </button>
+              </ion-buttons>
+            </ion-toolbar>
+            <ion-card-content>
+              <a href="{{ videoProduction.url }}">
+                <h2>{{ videoProduction.title}} </h2>
+              </a>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+
+    </div><!--seen-->
+
+    <div *ngSwitchCase="'notSeenYet'">
+      <div *ngFor="let videoProduction of videoProductions">
+        <div *ngIf="videoProduction.state=='notSeenYet'">
+          <ion-card>
+            <ion-toolbar>
+              <ion-title>{{ videoProduction.type }}</ion-title>
+              <ion-buttons end>
+                <button ion-button icon-only (click)="goToEditVideoProductionPage(videoProduction)">
+                  <ion-icon name="create" color="secondary"></ion-icon>
+                </button>
+                <button ion-button icon-only (click)="changeStateVideoProduction(videoProduction)">
+                  <ion-icon name="eye" color="primary"></ion-icon>
+                </button>
+                <button ion-button icon-only (click)="deleteVideoProduction(videoProduction)">
+                  <ion-icon name="trash" color="danger"></ion-icon>
+                </button>
+              </ion-buttons>
+            </ion-toolbar>
+            <ion-card-content>
+              <a href="{{ videoProduction.url }}">
+                <h2>{{ videoProduction.title }}</h2>
+              </a>
+            </ion-card-content>
+          </ion-card>
+          </div>
+      </div>
+    </div><!--notSeenYet-->
+
+  </div><!--ngSwitch-->
+
+  <ion-fab right bottom>
+    <button ion-fab mini (click)="goToAddVideoProductionPage()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>

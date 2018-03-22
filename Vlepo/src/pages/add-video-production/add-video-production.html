@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Πρόσθεσε</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label stacked><h2><b>Τίτλος</b></h2></ion-label>
+    <ion-input type="text" placeholder="Τίτλος" [(ngModel)]="videoProduction.title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked><h2><b>Τύπος</b></h2></ion-label>
+    <ion-select [(ngModel)]="videoProduction.type">
+      <ion-option value="Ταινία" [selected]=true>Ταινία</ion-option>
+      <ion-option value="Σειρά">Σειρά</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked><h2><b>Κατάσταση</b></h2></ion-label>
+    <ion-select [(ngModel)]="videoProduction.state">
+      <ion-option value="notSeenYet" [selected]=true>Θα την δω</ion-option>
+      <ion-option value="seen">Την έχω δει</ion-option>
+    </ion-select>
+  </ion-item>
+  <br>
+  <div style="text-align:center">
+    <button ion-button color="primary" (click)="saveVideoProduction(videoProduction)">ΠΡΟΣΘΗΚΗ</button>
+  </div>
+  
+</ion-content>
